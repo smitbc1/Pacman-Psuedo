@@ -1,0 +1,91 @@
+Pacman Pseudocode
+
+
+Step 1:  Decomposition 
+
+Breaking down the problem into simple steps:
+•	Describe the problem in your own words.
+A player controlled character moves through a maze, trying to consume all the kibble without running into any ghouls.
+
+•	Break the problem into 3 or 4 distinct parts.
+o	A maze must contain bricks, ghouls, kibble and pacman.
+o	Kibble disappears when pacman moves over it.
+o	Pacman moves with the mouse
+o	The ghouls move positions each timer tick
+
+•	Restate the problem in 1-2 sentences.
+A single player controlled character moves through a maze, consuming kibble when it passes over it. The player receives a point for each kibble they are able to collect. If pacman comes into contact with one of the three ghouls the roam the map, the game ends.
+
+•	What parts of the problem are extra functionality and can be left until later?
+o	Life system
+o	Menu
+o	Difficulty(amount of ghouls and/or timer speed)
+o	Ghoul movement decisions(up, down, left or right) based on pacmans position
+
+Step 2: Form Design
+
+•	What will the form look like, at the start of the game? After the game has been played for some time?
+
+
+
+•	Which controls and components will you use?
+4 Labels(Score, Lives, corresponding values)
+A button
+A timer
+•	What will the user do? Which events will be used?
+The user will need to press the arrow keys, which will move pacman in the direction the user pressed.
+A keydown event will be required for this.
+Timertick event will be required.
+
+
+
+Step 3: Abstraction
+
+Identify the classes that you will use:
+•	How many classes do you need?
+5
+
+•	What will each class be named? Think meaningful and informative to the reader.
+o	GameManager
+o	Creature
+o	Pacman
+o	Ghoul
+o	Maze
+
+•	What is the purpose of each class? This is your class comment.
+GameManager – Manages the game
+Creature – Parent class of pacman and ghoul. 
+Pacman – The purpose of this class is to draw the pacman, and move the pacman when user input is detected.
+Ghoul – The purpose of this class is to draw the ghoul and to move the ghoul
+Maze – Captures the behaviour of the DataGridView and holds an 20x20 array of the current state of each grid location, as well as drawing the maze to the screen.
+
+Step 4: Encapsulation
+
+Building up the classes:
+•	Using UML class diagrams, list the fields and methods which will be used for each class? Use a meaningful and informative naming system.
+
+ 
+•	State the purpose of each method in one short sentence. This becomes the comment for that method.
+o	GameManager
+	movePacman – Receives keydown value from the form(user input), sends it to the Move method in the Pacman class.
+	moveGhoul– Moves the ghoul.
+	Run – Runs the game.
+
+o	Creature – Parent class to the classes Pacman & Ghoul. Holds what these two classes have in common, width, height, graphics.
+o	Pacman
+	Move – Receives keydown(user input) from the GameManager, moves the pacman in the direction of the keydown value.
+	Draw – Draws the pacman at its current position.
+o	Ghoul
+	Move – Moves the ghoul 1 position in a random direction(AI to be implemented later).
+	Draw – Draws the ghoul at its current position
+o	Maze
+	Maze – creates a datagridview that holds 20x20 images
+	Draw – Draws the data contained in the datagridview to the screen
+
+
+
+Step 5: Iterative Refinement
+•	Identify the curly issues that still need to be solved.
+Tile mapping using DataGridView
+Changing the DataGrid on the fly
+Pacman animation
